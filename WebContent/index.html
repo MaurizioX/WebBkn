@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 3.0 License
+
+Name       : Compass  
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20120513
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>Compass by FCT</title>
+<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+
+</head>
+<body>
+<div id="wrapper">
+	<div id="menu">
+		<ul>
+			<li class="current_page_item"><a href="#">Home</a></li>			
+			<li><a href="#">Dojos</a></li>
+			<li><a href="#">Historia</a></li>
+			<li><a href="#">Escuelas</a></li>
+			<li><a href="#">Contacto</a></li>
+		</ul>
+	</div>
+	<!-- end #menu -->
+	<div id="header">
+		<div id="logo">
+			<h1><a href="#">Bujinkan Dojo Cordoba</a> / <span><br>NINJUTSU..."El arte marcial que comienza donde los demás terminan"</span></h1>
+		</div>
+	</div>
+	<div id="banner"><img src="images/compass.jpg" width="900" height="295" alt="" /></div>
+	<!-- end #header -->
+	<div id="page">
+		<div class="featured-post">
+			<h2 class="title">Praesent scelerisque scelerisque</h2>
+			<p>This is <strong>Compass</strong>, a free, fully standards-compliant CSS template by <a href="http://www.freecsstemplates.org">FCT</a>. The picture in this template is from <a href="http://fotogrph.com/">FotoGrph</a>. This free template is released under a <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attributions 3.0</a> license, so you are pretty much free to do whatever you want with it (even use it commercially) provided you keep the links in the footer intact. Aside from that, have fun with it :) </p>
+		</div>
+		<div id="content">			
+		</div>
+		<div id="sidebar">
+			<ul>
+				<li>
+					<h2>Categories</h2>
+					<ul>
+						<li><a href="#">Aliquam libero</a></li>
+						<li><a href="#">Consectetuer adipiscing elit</a></li>
+						<li><a href="#">Metus aliquam pellentesque</a></li>
+						<li><a href="#">Suspendisse iaculis mauris</a></li>
+						<li><a href="#">Urnanet non molestie semper</a></li>
+						<li><a href="#">Proin gravida orci porttitor</a></li>
+					</ul>
+				</li>
+				<li>
+					<h2>Blogroll</h2>
+					<ul>
+						<li><a href="#">Aliquam libero</a></li>
+						<li><a href="#">Consectetuer adipiscing elit</a></li>
+						<li><a href="#">Metus aliquam pellentesque</a></li>
+						<li><a href="#">Suspendisse iaculis mauris</a></li>
+						<li><a href="#">Urnanet non molestie semper</a></li>
+						<li><a href="#">Proin gravida orci porttitor</a></li>
+					</ul>
+				</li>
+				<li>
+					<h2>Archives</h2>
+					<ul>
+						<li><a href="#">Aliquam libero</a></li>
+						<li><a href="#">Consectetuer adipiscing elit</a></li>
+						<li><a href="#">Metus aliquam pellentesque</a></li>
+						<li><a href="#">Suspendisse iaculis mauris</a></li>
+						<li><a href="#">Urnanet non molestie semper</a></li>
+						<li><a href="#">Proin gravida orci porttitor</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		
+	</div>
+	<div id="about">
+		<h2 class="title">Amet mattis fringilla nisl</h2>
+		<p>Libero rutrum felis dignissim accumsan cum at purus. Nisi lacinia duis dignissim purus. Cubilia mollis scelerisque a faucibus orci congue. Faucibus tristique elit varius nibh tristique lectus lorem. Donec risus mi egestas ultricies. Velit enim diam id magna hendrerit. Augue massa odio tempus. Metus nisl purus semper massa viverra. Auctor tincidunt dignissim montes duis integer faucibus. Eget felis nascetur magnis magnis ultricies velit. Libero rutrum felis dignissim accumsan cum at purus. Donec risus mi egestas ultricies. Velit enim diam id magna hendrerit. Augue massa odio tempus. Metus nisl purus semper massa viverra.</p>
+	</div>
+</div>
+<div id="footer">
+	<p>Copyright (c) 2012 Sitename.com. All rights reserved. photo by <a href="http://fotogrph.com/">fotogrph</a>. Design by <a href="http://www.freecsstemplates.org/">FCT</a>.</p>
+</div>
+<!-- end #footer -->
+<!-- Load JQuery -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script>
+
+(function($) {
+	var pageContent = $('#content');
+
+	console.log("step: 1");
+	var myJson = {
+		init:function(){
+//			this.url ="http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?"
+//			this.url = "http://localhost:8080/Bkn/data/posts.json";
+ 			this.url = "data/posts.json";
+			this.fetch();
+		},
+		fetch:function(){
+			console.log("url:"+this.url);
+
+			$.getJSON(myJson.url,function( data ){
+						var items = [];
+						var dataObject = data.posts;			
+
+						
+						$.each(dataObject, function(key, val){							
+							var post = $('<div class="post">');
+							$("<h2 class='title'><a href='#'> "+ dataObject[key].title +"</a></h2>").appendTo(post);
+							$("<image src='images/"+ dataObject[key].image +"'/>").appendTo(post);
+							$("<div class='entry'><p>"+dataObject[key].entry +" </p></div>").appendTo(post);
+							items.push(post);						
+						
+						console.log('post: ' + post);
+						
+			});
+						
+						console.log('item: ' + items);
+						$('#content').appendTo(items);
+		}).success(function() { console.log("Json: " + myJson.url + " success");})
+			.error(function() { console.log("Json: " + myJson.url + "  error"); })
+			.complete(function() { console.log("Json: " + myJson.url + " complete"); });;
+			
+
+		}		
+	};
+
+
+	console.log("step: 3");
+	 myJson.init();
+
+
+
+})( jQuery );
+
+
+
+
+</script>
+</body>
+</html>

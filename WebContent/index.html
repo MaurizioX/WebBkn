@@ -95,7 +95,8 @@ Released   : 20120513
 <!-- end #footer -->
 <!-- Load JQuery -->
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
 <script>
 
 (function($) {
@@ -113,7 +114,7 @@ Released   : 20120513
 						var dataObject = data.posts;
 						$.each(dataObject, function(key, jsonItem){							
 							console.log(" Val: " +jsonItem.title + " Val:"+jsonItem.image);
-							var post = $('<div class="post">');
+							var post = $('<div class="post"></div>');
 							$("<h2 class='title'><a href='#'> "+ jsonItem.title +"</a></h2>").appendTo(post);
 							$("<image src='images/"+ jsonItem.image +"'/>").appendTo(post);
 							$("<div class='entry'><p>"+jsonItem.entry +" </p></div>").appendTo(post);
@@ -123,8 +124,8 @@ Released   : 20120513
 						
 			});
 						
-						console.log('item: ' + items);
-						$('#content').appendTo(items);
+						console.log('item: ' + $(items));
+						$(pageContent).appendTo(items);
 		}).success(function() { console.log("Json: " + myJson.url + " success");})
 			.error(function() { console.log("Json: " + myJson.url + "  error"); })
 			.complete(function() { console.log("Json: " + myJson.url + " complete"); });;

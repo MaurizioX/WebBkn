@@ -114,18 +114,18 @@ Released   : 20120513
 						var dataObject = data.posts;
 						$.each(dataObject, function(key, jsonItem){							
 							console.log(" Val: " +jsonItem.title + " Val:"+jsonItem.image);
-							var post = $('<div class="post"></div>');
-							$("<h2 class='title'><a href='#'> "+ jsonItem.title +"</a></h2>").appendTo(post);
-							$("<image src='images/"+ jsonItem.image +"'/>").appendTo(post);
-							$("<div class='entry'><p>"+jsonItem.entry +" </p></div>").appendTo(post);
-							items.push(post);						
+							var $post = $('<div class="post"></div>');
+							$("<h2 class='title'><a href='#'> "+ jsonItem.title +"</a></h2>").appendTo($post);
+							$("<image src='images/"+ jsonItem.image +"'/>").appendTo($post);
+							$("<div class='entry'><p>"+jsonItem.entry +" </p></div>").appendTo($post);
+							items.push($post);						
 						
-						console.log('post: ' + $(post));
+						console.log('post: ' + $($post));
 						
 			});
 						
 						console.log('item: ' + $(items));
-						$(pageContent).appendTo(items);
+						$(items).appendTo(pageContent);
 		}).success(function() { console.log("Json: " + myJson.url + " success");})
 			.error(function() { console.log("Json: " + myJson.url + "  error"); })
 			.complete(function() { console.log("Json: " + myJson.url + " complete"); });;

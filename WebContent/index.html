@@ -101,30 +101,25 @@ Released   : 20120513
 (function($) {
 	var pageContent = $('#content');
 
-	console.log("step: 1");
 	var myJson = {
 		init:function(){
-//			this.url ="http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?"
-//			this.url = "http://localhost:8080/Bkn/data/posts.json";
  			this.url = "data/posts.json";
 			this.fetch();
 		},
 		fetch:function(){
-			console.log("url:"+this.url);
-
 			$.getJSON(myJson.url,function( data ){
 						var items = [];
-						var dataObject = data.posts;			
-
-						
-						$.each(dataObject, function(key, val){							
+						console.log("post contet: "+$('#content'));
+						var dataObject = data.posts;
+						$.each(dataObject, function(key, jsonItem){							
+							console.log(" Val: " +jsonItem.title + " Val:"+jsonItem.image);
 							var post = $('<div class="post">');
-							$("<h2 class='title'><a href='#'> "+ dataObject[key].title +"</a></h2>").appendTo(post);
-							$("<image src='images/"+ dataObject[key].image +"'/>").appendTo(post);
-							$("<div class='entry'><p>"+dataObject[key].entry +" </p></div>").appendTo(post);
+							$("<h2 class='title'><a href='#'> "+ jsonItem.title +"</a></h2>").appendTo(post);
+							$("<image src='images/"+ jsonItem.image +"'/>").appendTo(post);
+							$("<div class='entry'><p>"+jsonItem.entry +" </p></div>").appendTo(post);
 							items.push(post);						
 						
-						console.log('post: ' + post);
+						console.log('post: ' + $(post));
 						
 			});
 						
